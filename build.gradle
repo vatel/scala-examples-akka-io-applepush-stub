@@ -1,0 +1,51 @@
+apply plugin: "scala"
+apply plugin: "eclipse"
+apply plugin: "idea"
+
+compileScala {
+  // scalaCompileOptions.useCompileDaemon = true
+  scalaCompileOptions.useAnt = false
+}
+
+repositories {
+    mavenCentral()
+	maven { url = "http://oss.sonatype.org/content/repositories/snapshots" }
+	maven { url = "http://repo.typesafe.com/typesafe/releases" }
+}
+
+sourceSets {
+    main {
+        scala {
+			srcDirs = ["src/main/scala"]
+        }
+		resources {
+			srcDirs = ["src/main/config"]
+		}
+    }
+    test {
+        scala {
+            srcDirs = ["src/test/scala"]
+        }
+    }
+}
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+archivesBaseName = "applePushStub"
+version = 1.0
+
+dependencies {
+	compile "org.scala-lang:scala-library:2.10.2"	
+	compile "com.typesafe.akka:akka-actor_2.10:2.2.+"
+	compile "com.typesafe.akka:akka-slf4j_2.10:2.2.+"
+	compile "com.typesafe:scalalogging-slf4j_2.10:1.0.1"
+	compile "ch.qos.logback:logback-classic:1.0.13"
+	compile "ch.qos.logback:logback-core:1.0.13"
+	compile "commons-codec:commons-codec:1.8"
+}
+
+task run(type: JavaExec, dependsOn: classes) {
+    main = "stub.ApplePushStub2"
+    classpath sourceSets.main.runtimeClasspath
+    // jvmArgs = ["-Djavax.net.ssl.trustStore=./cacerts", "-Djavax.net.debug=ssl"]
+}

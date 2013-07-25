@@ -1,0 +1,13 @@
+.DS_Store
+*_local*
+target/
+logs
+.idea/
+*.iml
+.gradle/
+build/
+bin/
+.project
+.classpath
+.settings
+.cache

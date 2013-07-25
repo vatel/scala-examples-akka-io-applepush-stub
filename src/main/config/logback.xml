@@ -1,0 +1,17 @@
+<configuration scan="false" debug="false">
+  
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>logs/applePushStub.log</file>
+    <append>false</append>
+    <encoder>
+      <pattern>%d{HH:mm:ss} %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  <logger name="stub" level="INFO" additivity="false">
+    <appender-ref ref="FILE" />
+  </logger>
+
+  <root level="OFF" />
+
+</configuration>
